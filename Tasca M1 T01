@@ -11,9 +11,9 @@ Realitza la següent consulta sobre la base de dades acabada de crear:
 
 Has d'obtenir el nom, el país i la data de naixement d'aquelles persones per les quals no consti una data de mort i ordenar les dades de la persona més vella a la persona més jove.
 
-select *
-from movies.tb_person
-where person_dod is not null
+select person_name, person_country, person_dob
+from tb_person
+where person_dod is null
 order by person_dob;
 
 - Exercici 3
@@ -22,6 +22,12 @@ Realitza la següent consulta sobre la base de dades acabada de crear:
 
 Has d'obtenir el nom del gènere i el nombre total de pel·lícules d'aquest gènere i ordenar-ho per ordre descendent de nombre total de pel·lícules.  
 
+SELECT genre_name, count(genre_name)
+from tb_movie
+left join tb_genre
+on tb_movie.movie_genre_id= tb_genre.genre_id
+GROUP by genre_name
+order by count(genre_name) asc
 
 - Exercici 4
 
