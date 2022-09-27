@@ -35,7 +35,21 @@ Realitza la següent consulta sobre la base de dades acabada de crear:
 
 Has d'obtenir, per a cada persona, el seu nom i el nombre màxim de rols diferents que ha tingut en una mateixa pel·lícula. 
 
+SELECT tb_person.person_name, count(distinct role_id)
+from tb_movie_person
+LEFT JOIN tb_person
+on tb_movie_person.person_id = tb_person.person_id
+GROUP by tb_movie_person.person_id
+
 Posteriorment, mostra únicament aquelles persones que hagin assumit més d'un rol en una mateixa pel·lícula.
+
+SELECT tb_person.person_name, count(distinct role_id) as diferents
+from tb_movie_person
+LEFT JOIN tb_person
+on tb_movie_person.person_id = tb_person.person_id
+GROUP by tb_movie_person.person_id
+HAVING diferents > 1
+
 
 - Exercici 5
 
