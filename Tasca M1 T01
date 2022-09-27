@@ -57,6 +57,9 @@ Realitza la següent operació sobre la base de dades acabada de crear:
 
 Has de crear un nou gènere anomenat "Documental" el qual tingui com a identificador el nombre 69.
 
+INSERT into tb_genre  (genre_id, genre_name)
+values ('69', 'Documental')
+
 
 - Exercici 6
 
