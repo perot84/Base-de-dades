@@ -1,0 +1,93 @@
+Exercici 1
+
+A partir dels documents adjunts (estructura i dades), crea una base de dades amb MySQL. Mostra les característiques principals de l'esquema creat i explica les diferents taules i variables que hi ha.
+
+No he trobat com fer-ho amb SQlitle
+
+
+- Exercici 2
+
+Realitza la següent consulta sobre la base de dades acabada de crear: 
+
+Has d'obtenir el nom, el país i la data de naixement d'aquelles persones per les quals no consti una data de mort i ordenar les dades de la persona més vella a la persona més jove.
+
+select person_name, person_country, person_dob
+from tb_person
+where person_dod is null
+order by person_dob;
+
+#Captura de pantalla adjunta a GitHub
+
+- Exercici 3
+
+Realitza la següent consulta sobre la base de dades acabada de crear: 
+
+Has d'obtenir el nom del gènere i el nombre total de pel·lícules d'aquest gènere i ordenar-ho per ordre descendent de nombre total de pel·lícules.  
+
+SELECT genre_name, count(genre_name)
+from tb_movie
+left join tb_genre
+on tb_movie.movie_genre_id= tb_genre.genre_id
+GROUP by genre_name
+order by count(genre_name) asc
+
+#Captura de pantalla adjunta a GitHub
+
+- Exercici 4
+
+Realitza la següent consulta sobre la base de dades acabada de crear: 
+
+Has d'obtenir, per a cada persona, el seu nom i el nombre màxim de rols diferents que ha tingut en una mateixa pel·lícula. 
+
+SELECT tb_person.person_name, count(distinct role_id)
+from tb_movie_person
+LEFT JOIN tb_person
+on tb_movie_person.person_id = tb_person.person_id
+GROUP by tb_movie_person.person_id
+
+Posteriorment, mostra únicament aquelles persones que hagin assumit més d'un rol en una mateixa pel·lícula.
+
+SELECT tb_person.person_name, count(distinct role_id) as diferents
+from tb_movie_person
+LEFT JOIN tb_person
+on tb_movie_person.person_id = tb_person.person_id
+GROUP by tb_movie_person.person_id
+HAVING diferents > 1
+
+#Captura de pantalla adjunta a GitHub
+
+
+- Exercici 5
+
+Realitza la següent operació sobre la base de dades acabada de crear: 
+
+Has de crear un nou gènere anomenat "Documental" el qual tingui com a identificador el nombre 69.
+
+INSERT into tb_genre  (genre_id, genre_name)
+values ('69', 'Documental')
+
+#Sense captura de pantalla, ja que no dóna cap "resultat gràfic"
+
+
+- Exercici 6
+
+Fes la següent operació sobre la base de dades acabada de crear:  
+
+Elimina la pel·lícula "La Gran Familia Española" de la base de dades.
+
+DELETE FROM tb_movie
+where movie_title = 'La Gran Familia Española'
+
+#Sense captura de pantalla, ja que no dóna cap "resultat gràfic"
+
+- Exercici 7
+
+Realitza la següent operació sobre la base de dades acabada de crear: 
+
+Canvia el gènere de la pel·lícula "Ocho apellidos catalanes" perquè consti com a comèdia i no com a romàntica.
+
+UPDATE tb_movie
+SET movie_genre_id =3
+where movie_title = 'Ocho Apellidos Catalanes'
+
+#Sense captura de pantalla, ja que no dóna cap "resultat gràfic"
